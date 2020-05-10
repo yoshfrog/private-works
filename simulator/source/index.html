@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>見積もりシュミレーション</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+	<h1>見積もりシュミレーション</h1>
+	<form method="post" action="">
+		<div class="sideBlock">
+			<div><label>クライアント<textarea name="client" id="client" placeholder="クライアントを入力"></textarea></label></div>
+			<div><label>案件名<textarea name="projName" id="projName" placeholder="案件名を入力"></textarea></label></div>
+			<div><label>+30%金額<input type="text" class="totalExtr30" value="0"></label></div>
+			<div><label>合計金額<input type="text" class="total" value="0"></label></div>
+			<div><label>‐30%金額<input type="text" class="totalDscnt30" value="0"></label></div>
+		</div>
+
+		<div class="category">
+
+			<table class="box">
+				<tr><th>box01</th></tr>
+				<tr>
+					<td>
+						<div class="itemSingle">
+							<label><input type="checkbox" class="value" value="100">バリュー100</label>
+							<label><input type="checkbox" class="value" value="200">バリュー200</label>
+							<label><input type="checkbox" class="value" value="300">バリュー300</label>
+						</div>
+						<div class="itemNest">
+							<label><input type="checkbox" class="value itemParent others" value="0">その他バリュー0</label>
+							<ul><li><label>(<input type="text" class="itemChild inputFree" placeholder="その他の内容を入力">)</label></li></ul>
+						</div>
+						<div class="subOutput">
+							<label><input type="text" class="subTotal" value="0">円</label>
+							<span class="clearBtn">×</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="box">
+				<tr><th>box02</th></tr>
+				<tr>
+					<td>
+						<div class="itemNest">
+							<label><input type="radio" class="value itemParent" name="box02_a" value="100">バリュー100</label>
+						</div>
+						<div class="itemNest">
+							<label><input type="radio" class="value itemParent" name="box02_a" value="0">バリュー0</label>
+							<ul>
+							<li><label><input type="radio" class="value itemChild" name="box02_b" value="100">バリュー100</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box02_b" value="200">バリュー200</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box02_b" value="300">バリュー300</label></li>
+							</ul>
+						</div>
+						<div class="subOutput">
+							<label><input type="text" class="subTotal" value="0">円</label>
+							<span class="clearBtn">×</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="box">
+				<tr><th>box03</th></tr>
+				<tr>
+					<td>
+						<div class="itemNest">
+							<label><input type="radio" class="value itemParent" name="box03_a" value="0">バリュー0</label>
+							<ul>
+							<li><label><input type="radio" class="value itemChild" name="box03_b" value="100">バリュー100</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box03_b" value="200">バリュー200</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box03_b" value="300">バリュー300</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box03_b" value="400">バリュー400</label></li>
+							<li>
+								<label><input type="radio" class="value itemChild others" name="box03_b" value="500">その他バリュー500</label>
+								<ul><li><label>(<input type="text" class="itemGrndChild inputFree" placeholder="その他の内容を入力">)</label></li></ul>
+							</li>
+							</ul>
+						</div>
+						<div class="itemNest">
+							<label><input type="radio" class="value itemParent" name="box03_a" value="100">バリュー100</label>
+						</div>
+						<div class="itemNest">
+							<label><input type="radio" class="value itemParent" name="box03_a" value="0">バリュー0</label>
+							<ul>
+							<li><label><input type="radio" class="value itemChild" name="box03_c" value="100">バリュー100</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box03_c" value="200">バリュー200</label></li>
+							<li><label><input type="radio" class="value itemChild" name="box03_c" value="300">バリュー300</label></li>
+							</ul>
+						</div>
+						<div class="subOutput">
+							<label><input type="text" class="subTotal" value="0">円</label>
+							<span class="clearBtn">×</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<table class="box">
+				<tr><th>box04</th></tr>
+				<tr>
+					<td>
+						<div class="itemNest">
+							<label><input type="checkbox" class="value itemParent" value="0">バリュー0</label>
+							<ul>
+							<li><label><input type="checkbox" class="value itemChild" value="100">バリュー100</label></li>
+							<li><label><input type="checkbox" class="value itemChild" value="200">バリュー200</label></li>
+							</ul>
+						</div>
+						<div class="itemNest">
+							<label><input type="checkbox" class="itemParent inputNum">カテゴリ</label>
+							<label>(<input type="text" class="itemChild inputPages" value="0">) ページ</label>
+							<ul>
+							<li><label><input type="checkbox" class="valuePage itemChild" value="100">バリュー100</label></li>
+							<li><label><input type="checkbox" class="valuePage itemChild" value="200">バリュー200</label></li>
+							</ul>
+						</div>
+						<div class="itemNest">
+							<label><input type="checkbox" class="itemParent inputNum">カテゴリ</label>
+							<label>(<input type="text" class="itemChild inputPages" value="0">) ページ</label>
+							<ul>
+							<li><label><input type="checkbox" class="valuePage itemChild" value="100">バリュー100</label></li>
+							<li><label><input type="checkbox" class="valuePage itemChild" value="200">バリュー200</label></li>
+							</ul>
+						</div>
+						<div class="subOutput">
+							<label><input type="text" class="subTotal" value="0">円</label>
+							<span class="clearBtn">×</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+		</div><!--/category-->
+
+	</form>
+</div><!--wrap-->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/estimate.js"></script>
+
+</body>
+</html>

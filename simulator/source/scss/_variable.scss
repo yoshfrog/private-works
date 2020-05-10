@@ -1,0 +1,52 @@
+@charset "utf-8";
+// variable
+
+//フォント サイズ・カラー
+$font_color_base: #707070;
+$font_color_bright: #fcfcfc;
+$font_size_base: 1.6rem;
+$line-height_base:1.6;
+
+//ベースカラー
+// $color_base: #8CC448;
+// $color_accent: #E9B800;
+
+//アンカーカラー
+$anchor_color_base:#c00;
+// $anchor_color_accent:rgba($anchor_color_base , .8);
+
+//背景色
+$backgroaund_color_base: #eee;
+
+
+
+//---------------------------------------------------------------------------------------------------------------
+//画像パス
+// $common: '/assets/images/common/';
+// $top: '/assets/images/top/';
+
+// .hoge_img { background-image:url(#{$common}画像名.png); }
+
+
+//---------------------------------------------------------------------------------------------------------------
+
+//レイアウト
+$browse_gutter: 20px;
+$width_outer: 1280px ;
+// $width_inner: 1280px ;
+
+
+//---------------------------------------------------------------------------------------------------------------
+//ブレイクポイント用 (responsive.scss)  利用しないものはコメントアウトする
+
+$desktop: 1300px;  //desktopのみの利用時があるときだけ 通常はコメントアウトでよい
+
+$tablet: 768px;  //breakpoint タブレット幅のとき → $tabletだけ記載 その他はコメントアウト
+$break_tablet : no ; //'yes' or 'no' で記載  display_switch用(responsive.scss)
+
+$mobile: 414px;  //breakpoint タブレット幅のとき および モバイル幅のとき → $tablet と $mobile記載
+$break_tablet_mobile : no ; //'yes' or 'no' で記載  display_switch用(responsive.scss)
+
+//---------------------------------------------------------------------------------------------------------------
+
+

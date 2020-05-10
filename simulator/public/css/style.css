@@ -1,0 +1,459 @@
+@charset "UTF-8";
+/*------------------------------------------------
+  reset
+------------------------------------------------*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+sub, sup, small {
+  font-size: 80%;
+}
+
+area {
+  border: none;
+  outline: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+button, input, select, textarea {
+  margin: 0;
+  padding: 0;
+  border-style: none;
+}
+
+input, select {
+  vertical-align: middle;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img, fieldset, iframe {
+  border: 0;
+  vertical-align: middle;
+}
+
+img, embed, iframe, object, audio, video {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+body {
+  -webkit-font-feature-settings: "palt" 1;
+  font-feature-settings: "palt" 1;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ------------------------------------------------
+  sitebase
+------------------------------------------------ */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: #707070;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", Arial, "メイリオ", Meiryo, sans-serif;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------
+  共通レイアウト
+------------------------------------------------ */
+a {
+  display: block;
+  color: #c00;
+  outline: none;
+  text-decoration: none;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+
+a:visited {
+  color: #990000;
+}
+
+a:hover, a:visited:hover {
+  text-decoration: none;
+  opacity: .8;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="submit"],
+form button,
+form textarea {
+  -webkit-appearance: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  padding: 0px 5px;
+}
+
+input::-ms-clear {
+  visibility: hidden;
+}
+
+input[type="text"] {
+  height: 1.6rem;
+  display: inline;
+  vertical-align: middle;
+}
+
+/*------------------------------------------------
+  sideBlock
+------------------------------------------------*/
+.sideBlock {
+  width: 15vw;
+  margin: 2.5rem 1.25vw;
+}
+
+.sideBlock > div {
+  margin-bottom: 2.5rem;
+}
+
+.sideBlock label {
+  font-size: 1.8rem;
+}
+
+.sideBlock textarea {
+  width: 100%;
+  height: 12rem;
+  padding: .5rem 1rem;
+  resize: none;
+  line-height: 1.5;
+  background: #eee;
+}
+
+.sideBlock input[type="text"] {
+  width: 100%;
+  height: 3.5rem;
+  text-align: right;
+  background: #eee;
+  line-height: 2.5;
+}
+
+/*------------------------------------------------
+  メイン
+------------------------------------------------*/
+.wrap {
+  width: 90vw;
+  margin: auto;
+}
+
+h1 {
+  margin: 1em auto 0;
+  text-align: center;
+  font-size: 2.8rem;
+}
+
+form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  max-width: calc(1280px + 2vw);
+  margin: auto;
+  padding: 20px 0;
+  font-size: 1.5rem;
+}
+
+.category {
+  width: 72vw;
+  max-width: 1040px;
+  padding: 50px;
+  background: #eee;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.category .box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  position: relative;
+  width: 31.5vw;
+  max-width: 460px;
+  min-height: 40rem;
+  padding-bottom: 6.2rem;
+  background: #FFF;
+}
+
+.category .box:nth-child(n+3) {
+  margin-top: 30px;
+}
+
+.category th {
+  width: 100vw;
+  padding: .5rem 1.5rem;
+  color: #fcfcfc;
+  font-size: 2rem;
+  background: #ccc;
+}
+
+.category td {
+  width: 100vw;
+  padding: 1.5rem 2rem 0;
+}
+
+.category td > label {
+  margin-bottom: .5rem;
+}
+
+.category td > div:not(:first-child) {
+  margin-top: 2.2rem;
+}
+
+.category .itemSingle {
+  margin-bottom: -2.2rem;
+}
+
+.category .itemSingle label {
+  display: block;
+}
+
+.category .itemNest ul {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 25vw;
+  max-width: 400px;
+  margin-left: 1.8rem;
+}
+
+.category .itemNest ul li:not(:last-child) {
+  margin-right: 4.5vw;
+}
+
+.category .subOutput {
+  width: calc(100% - 2vw);
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1rem;
+  padding: .5rem 1rem;
+  text-align: right;
+  border-radius: 2rem;
+  background: #eee;
+}
+
+.category .subTotal {
+  width: 20vw;
+  max-width: 220px;
+  height: 3.2rem;
+  margin-right: .5rem;
+  border-radius: 5px;
+  text-align: right;
+  background: #fff;
+}
+
+.category input[type="radio"], .category input[type="checkbox"] {
+  margin-right: 0.4rem;
+}
+
+.category input[type="text"].inputFree {
+  width: 23vw;
+  max-width: 350px;
+  height: auto;
+  margin: 0 0.2rem;
+  line-height: 1.2;
+  border-bottom: 1px solid #bdbdbd;
+  background: #fff;
+}
+
+.category input[type="text"].inputPages {
+  width: 5vw;
+  height: auto;
+  margin: 0 0.2rem;
+  padding: 0 5px;
+  line-height: 1.2;
+  text-align: right;
+  border-bottom: 1px solid #bdbdbd;
+  background: #fff;
+}
+
+.category input[type="text"].focused {
+  background: #f4f4f4;
+  border-color: #7d7d7d;
+}
+
+.category .clearBtn {
+  display: inline;
+  cursor: pointer;
+  padding: 0.1em 0.5em;
+  margin-left: 0.5em;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: bold;
+  border-radius: 3em;
+  background: #aaa;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 769px) and (max-width: 1300px) {
+  /*------------------------------------------------
+	sideBlock
+  ------------------------------------------------*/
+  .sideBlock {
+    margin: 2.5rem 1.25vw 0 0;
+  }
+  /*------------------------------------------------
+	メイン
+  ------------------------------------------------*/
+  .wrap {
+    width: 96vw;
+  }
+  .category {
+    width: 80vw;
+    padding: 50px 3vw;
+  }
+  .category .box {
+    width: 36vw;
+  }
+  .category .itemNest ul {
+    width: 100%;
+    max-width: 30vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /*------------------------------------------------
+	sideBlock
+  ------------------------------------------------*/
+  .sideBlock {
+    width: 90%;
+    margin: auto;
+  }
+  .sideBlock > div {
+    margin-bottom: .5rem;
+  }
+  .sideBlock textarea {
+    height: 5rem;
+  }
+  /*------------------------------------------------
+	メイン
+  ------------------------------------------------*/
+  .wrap, form {
+    display: block;
+    width: 100%;
+  }
+  h1 {
+    font-size: 2.4rem;
+  }
+  .category {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 30px 3vw;
+  }
+  .category .box {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    margin: 0;
+    padding-bottom: 1rem;
+  }
+  .category .box:nth-child(n+3) {
+    margin-top: 0;
+  }
+  .category .box:not(:first-child) {
+    margin-top: 20px;
+  }
+  .category .itemNest ul {
+    width: 100%;
+    max-width: 75vw;
+  }
+  .category .itemNest ul li:not(:last-child) {
+    margin-right: 10vw;
+  }
+  .category .subTotal {
+    width: 50vw;
+    max-width: 100%;
+  }
+  .category .subOutput {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    margin: auto;
+  }
+  .category input[type="text"].inputFree {
+    width: 70vw;
+  }
+  .category input[type="text"].inputPages {
+    width: 20vw;
+  }
+}
