@@ -1,0 +1,71 @@
+@charset "UTF-8";
+// variable
+
+//フォント サイズ・カラー
+$font_color_base: #333;
+$font_size_base: 1.6rem;
+$line-height_base:1.6;
+
+//ベースカラー
+$color_base: #8CC448;
+$color_accent: #E9B800;
+
+//アンカーカラー
+$anchor_color_base:#333;
+$anchor_color_accent:lighter($anchor_color_base, 30%);
+
+//背景色
+$backgroaund_color_base: #f6f6f6;
+
+
+
+//---------------------------------------------------------------------------------------------------------------
+//画像パス
+$common: '/assets/images/common/';
+$top: '/assets/images/top/';
+
+// .hoge_img { background-image:url(#{$common}画像名.png); }
+
+
+//---------------------------------------------------------------------------------------------------------------
+
+//レイアウト
+$browse_gutter: 15px;
+$width_outer: 1200px ;
+$width_inner: 1000px ;
+
+
+//---------------------------------------------------------------------------------------------------------------
+//font
+//10px = 1rem にする時は yes -> html {font-size:62.5%;}指定
+$fz625: yes;
+
+//レスポンシブ（スマホデザインサイズベース $vw_base）基準フォントサイズ 10px
+$fzvwbase: yes;
+
+//レスポンシブ（ブレイクポイント $bpoint の 1/2幅）基準フォントサイズ 10px
+$fzvwbreakpoint: yes;
+$breakpoint: 768;
+
+
+//---------------------------------------------------------------------------------------------------------------
+// デザインの基準にするスマホサイズ（PSDのスマホサイズ）
+$vw_base: 375;
+$vh_base: 667;
+
+//---------------------------------------------------------------------------------------------------------------
+//ブレイクポイント用 (responsive.scss)  利用しないものはコメントアウトする
+
+$desktop: 1000px;  //desktopのみの利用時があるときだけ 通常はコメントアウトでよい
+
+$tablet: 768px;  //breakpoint タブレット幅のとき → $tabletだけ記載 その他はコメントアウト
+$break_tablet : yes ; //'yes' or 'no' で記載  display_switch用(responsive.scss)
+
+$mobile: 414px;  //breakpoint タブレット幅のとき および モバイル幅のとき → $tablet と $mobile記載
+$break_tablet_mobile : no ; //'yes' or 'no' で記載  display_switch用(responsive.scss)
+
+
+$display_switch : yes ; //pc sp tablet display:block;, display:none;分け
+//---------------------------------------------------------------------------------------------------------------
+
+

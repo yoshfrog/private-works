@@ -1,0 +1,342 @@
+@charset "UTF-8";
+//  Mixin
+
+//-------------------フォント系-------------------
+@mixin fz625 { font-size: 62.5%; }  //html { @include fz625; }
+
+//rem
+@mixin fzr($fz) {
+  @if $fz625 == yes {
+    $base: 10;                        //10px = 1rem        html {font-size:62.5%;}指定してる時に使用
+    font-size: ($fz / $base) * 1rem;  //font-size: 1.6rem;
+  } @else {
+    $base: 16;                        //16px = 1rem        html {font-size:62.5%;}指定していない時に使用
+    font-size: ($fz / $base) * 1rem;  //font-size: 1rem;
+  }
+}
+// .hoge { @include fzr(16); }  ->  font-size: 1.6 or 1 rem;
+
+
+//-----------フォント系 (mediaquery向け)-----------
+@mixin fzvwbase {    //html { @include fzvwbase; }
+  font-size: 100vw / ($vw_base / 10);    //レスポンシブ（スマホデザインサイズベース）基準フォントサイズ 10px
+}
+@mixin fzvwbreakpoint {    //html{ @include fzvwbreakpoint; }
+  font-size: 100vw / (($breakpoint / 2 )/ 10);    //レスポンシブ（ブレイクポイント1/2幅）基準フォントサイズ 10px
+}
+
+@mixin fzvw($fz:10){
+  font-size: getvw($fz);
+}
+@function getvw($size, $viewport:$vw_base){
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+//  .hoge { @include fzvw(14); }  //font-size: 3.73333vw;
+
+@mixin fzvmin($fz:10){
+  font-size: getvmin($fz);
+}
+@function getvmin($size, $viewport:$vw_base){
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vmin;
+}
+//  .hoge { @include fzvmin(14); }  //font-size: 3.73333vmin;
+
+
+
+//-------------------フォント系 vs line-height-------------------
+//px + line-height  $lh -> PSDの行送り（px）
+@mixin fzlh($fz, $lh: 24) {
+  font-size: #{$fz}px;
+  line-height: $lh / $fz;
+}
+// .hoge { @include fzlh(16, 24); }  ->  font-size: 16px;  line-height: 1.5;
+
+//rem + line-height  $lh -> PSDの行送り（px）
+@mixin fzrlh($fz, $lh: 24) {
+  @if $fz625 == yes {
+    $base: 10;                        //10px = 1rem
+    font-size: ($fz / $base) * 1rem;  //font-size: 1.6rem;
+    line-height: $lh / $fz;
+  } @else {
+    $base: 16;                        //16px = 1rem
+    font-size: ($fz / $base) * 1rem;  //font-size: 1rem;
+    line-height: $lh / $fz;
+  }
+}
+// .hoge { @include fzrlh(16, 24); }  ->  font-size: 1.6 or 1 rem;  line-height: 1.5;
+
+//-------------------margin/padding vs line-height-------------------
+//margin - line-height
+//$lh -> PSDの行送り（px）
+@mixin mgnlh($direction, $mgn, $fz, $lh) {     //単位 全て px
+  @if $direction == top {
+    margin-top: #{($mgn - (($fz * ($lh / $fz)) - $fz) / 2)}px;
+  } @else if $direction == bottom {
+    margin-bottom: #{($mgn - (($fz * ($lh / $fz)) - $fz) / 2)}px;
+  }
+}
+// .hoge { @include mgnlh(top, 30, 10, 20); }  //margin-top: 25px;
+
+//padding - line-height
+//$lh -> PSDの行送り（px）
+@mixin pdglh($direction, $pdg, $fz, $lh) {     //単位 全て px
+  @if $direction == top {
+    padding-top: #{($pdg - (($fz * ($lh / $fz)) - $fz) / 2)}px;
+  } @else if $direction == bottom {
+    padding-bottom: #{($pdg - (($fz * ($lh / $fz)) - $fz) / 2)}px;
+  }
+}
+// .hoge { @include pdglh(top, 30, 10, 20); }  //padding-bottom: 25px;
+
+
+//-----------margin/padding vs line-height (mediaquery向け)-----------
+//margin vw - line-height
+//$lh -> PSDの行送り（px）
+@mixin mgnvwlh($direction, $mgn, $fz, $lh) {     //単位 全て px
+  @if $direction == top {
+    margin-top:    (($mgn - (($fz * ($lh / $fz)) - $fz) / 2) / $vw_base) * 100vw ;
+  } @else if $direction == bottom {
+    margin-bottom: (($mgn - (($fz * ($lh / $fz)) - $fz) / 2) / $vw_base) * 100vw ;
+  }
+}
+// .hoge { @include mgnvwlh (top, 20, 10, 30);}  //margin-top: 2.5vw;
+
+//padding vw - line-height
+//$lh -> PSDの行送り（px）
+@mixin pdgvwlh($direction, $pdg, $fz, $lh) {     //単位 全て px
+  @if $direction == top {
+    padding-top:    (($pdg - (($fz * ($lh / $fz)) - $fz) / 2) / $vw_base) * 100vw ;
+  } @else if $direction == bottom {
+    padding-bottom: (($pdg - (($fz * ($lh / $fz)) - $fz) / 2) / $vw_base) * 100vw ;
+  }
+}
+// .hoge { @include pdgvwlh (bottom, 20, 10, 30);}  //padding-bottom: 2.5vw;
+
+
+
+
+//----------------margin/padding (mediaquery向け)----------------
+//margin vw
+@mixin mgnvw1($direction, $mgn) {
+  @if $direction == top {
+    margin-top:    ($mgn / $vw_base) * 100vw ;
+  } @else if $direction == bottom {
+    margin-bottom: ($mgn / $vw_base) * 100vw ;
+  } @else if $direction == left {
+    margin-left:   ($mgn / $vw_base) * 100vw ;
+  } @else if $direction == right {
+    margin-right:  ($mgn / $vw_base) * 100vw ;
+  }
+}
+// .hoge { @include mgnvw1 (bottom, 15);}  //margin-bottom: 4vw;
+
+@mixin mgnvw3($t, $lr, $b) {
+  @if $lr == auto {
+  margin:($t / $vw_base) * 100vw  #{ 'auto ' }  ($b / $vw_base) * 100vw;
+  } @else {
+    margin:($t / $vw_base) * 100vw ($lr / $vw_base) * 100vw ($b / $vw_base) * 100vw;
+  }
+}
+// .hoge { @include mgnvw3(20, auto, 15);}  //margin: 5.33333vw auto 4vw;
+
+@mixin mgnvw4($t, $r, $b, $l) {
+  margin:($t / $vw_base) * 100vw ($r / $vw_base) * 100vw ($b / $vw_base) * 100vw ($l / $vw_base) * 100vw;
+}
+// .hoge { @include mgnvw4(20,10,30,15);}  //margin: 5.33333vw 2.66667vw 8vw 4vw;
+
+
+//padding vw
+@mixin pdgvw1($direction, $pdg) {
+  @if $direction == top {
+    padding-top:    ($pdg / $vw_base) * 100vw ;
+  } @else if $direction == bottom {
+    padding-bottom: ($pdg / $vw_base) * 100vw ;
+  } @else if $direction == left {
+    padding-left:   ($pdg / $vw_base) * 100vw ;
+  } @else if $direction == right {
+    padding-right:  ($pdg / $vw_base) * 100vw ;
+  }
+}
+// .hoge { @include pdgvw1 (bottom, 15);}  //padding-bottom: 4vw;
+
+@mixin pdgvw3($t, $lr, $b) {
+  padding:($t / $vw_base) * 100vw ($lr / $vw_base) * 100vw ($b / $vw_base) * 100vw;
+}
+// .hoge { @include pdgvw3(20, 10, 15);}  //padding: 5.33333vw 2.66667vw 4vw;
+
+@mixin pdgvw4($t, $r, $b, $l) {
+  padding:($t / $vw_base) * 100vw ($r / $vw_base) * 100vw ($b / $vw_base) * 100vw ($l / $vw_base) * 100vw;
+}
+// .hoge { @include pdgvw4(20,10,30,15);}  //padding: 5.33333vw 2.66667vw 8vw 4vw;
+
+
+//--------------幅系 (mediaquery向け)--------------
+// width vw
+@mixin wvw($w) {
+	width:($w / $vw_base) * 100vw;
+}
+// .hoge { @include wvw(300); }  //width: 80vw;
+
+// height vw
+@mixin hvw($w) {
+	height:($w / $vw_base) * 100vw;
+}
+// .hoge { @include hvw(30); }  //height: 8vw;
+
+// height vh
+@mixin hvh($h) {
+	height:($h / $vh_base) * 100vh;
+}
+// .hoge { @include hvh(550); }  //height: 82.45877vh;
+
+
+//-------------------テキスト系-------------------
+//leffter-spacing
+//$ls -> PSDの文字間（px）
+@mixin ls( $ls ) {
+  letter-spacing: $ls / 1000 + em;
+}
+// .hoge { @include ls(5); }  //letter-spacing: 0.005em;
+
+
+//text両端揃え
+@mixin justify {
+	text-align: justify; // 両端揃え
+	text-justify: inter-ideograph; // 両端揃えの種類(IE用)
+}
+
+//-------------------Flexbox-------------------
+@mixin flex { display:flex; }
+
+@mixin flexwrap { flex-wrap: wrap; }
+@mixin flexnowrap { flex-wrap: nowrap; }
+
+@mixin flexstretch { align-items: stretch; }
+@mixin flexmiddle { align-items: center; }
+
+@mixin flexcenter {  justify-content: center; }
+@mixin flexbetween { justify-content:space-between; }
+@mixin flexaround { justify-content: space-around; }
+@mixin flexstart { justify-content: flex-start; }
+@mixin flexend { justify-content: flex-end; }
+
+
+@mixin flexorder($order) { order:$order; }  // .hoge { @include flexorder(1); }
+
+
+
+//-------------------天地中央-------------------
+@mixin centerXY {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+
+//-------------------縦中央-------------------
+@mixin centerY ($toward, $locate) {
+	position: absolute;
+	#{$toward}: $locate;
+	top: 50%;
+	transform: translateY(-50%);
+}
+// .hoge { @include centerY(right, 20%); }
+// .hoge { @include centerY(left, 80%); }
+
+//-------------------横中央-------------------
+@mixin centerX ($toward, $locate) {
+	position: absolute;
+	#{$toward}: $locate;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+// .hoge { @include centerX(top, 20%); }
+// .hoge { @include centerX(bottom, 80%); }
+
+
+
+//-------------------メディア系-------------------
+// padding-top で高さを確保
+@mixin ptpercent($width: 16, $height: 9) {   //対比 or pxで指定
+    position: relative;
+    padding-top: percentage($height / $width);
+    > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+// .hoge { @include ptpercent(750, 540); }  //padding-top: 72%;
+
+
+
+
+
+
+//-------------------三角-------------------
+@mixin triangle ($direction, $wide, $peak, $solid, $hue) {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	@if $direction == top {
+		border:$wide $solid transparent;
+		border-bottom:$peak $solid $hue;
+	} @else if $direction == left {
+		border:$wide $solid transparent;
+		border-right:$peak $solid $hue;
+	} @else if $direction == right {
+		border:$wide $solid transparent;
+		border-left:$peak $solid $hue;
+	} @else if $direction == bottom {
+		border:$wide $solid transparent;
+		border-top:$peak $solid $hue;
+	}
+}
+
+// .hoge {
+//   @include triangle(top, 50px, 100px, solid, #333);
+//   @include triangle(bottom, 50px, 100px, solid, #333);
+//   @include triangle(right, 50px, 100px, solid, #333);
+//   @include triangle(left, 50px, 100px, solid, #333);
+// }
+
+
+//-------------------グラデーション グラベンダープレフィックス-------------------
+//可長変引数として定義するには、引数「$color」の後ろにカンマ3つ（...）を記述「color...」します。
+
+@mixin gradation($startPosition, $endPosition, $graColors...) {
+  background-image:linear-gradient(to #{$endPosition}, $graColors);
+}
+//.hoge { @include gradation(top, bottom, #000 0%, #333 49%, #999 50%, #eee 100%); }
+
+
+
+//-------------------角度付きグラデーション グラベンダープレフィックス-------------------
+@mixin gradationdeg($angle, $graColors... ) {
+	@if $angle < 0 {
+		background-image:linear-gradient($angle + 180 , $graColors);
+	} @else {
+		background-image:linear-gradient($angle, $graColors);
+	}
+}
+//.hoge { @include gradationdeg(-45deg, #999 0%, #888 50%, #777 51%, #666 100%); }
+
+
+
+
+//-------------------円型グラデーション グラベンダープレフィックス-------------------
+@mixin gradationcir($graColors... ) {
+	background-image:radial-gradient(ellipse at center, $graColors);
+}
+// .hoge { @include gradationcir( #999 0%,  #666 100%); }
+
+
+
+

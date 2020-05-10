@@ -1,0 +1,191 @@
+@charset "UTF-8";
+/*------------------------------------------------
+  header
+------------------------------------------------*/
+header {
+  position: fixed;
+  width: 100%;
+  padding: 0.5em 0;
+  // color: #cfcfcf;
+  // background: #999;
+  z-index: 999;
+  color: $font_color_base;
+  // mix-blend-mode: difference;
+  mix-blend-mode: color-dodge;
+  .header__content {
+    display: flex;
+    align-items: center;
+  }
+
+  .header__logo {
+    color: #333;
+    font-size: 2.6rem;
+    font-weight: bold;
+  }
+  .global-nav__wrap {
+    margin-left: auto;
+  }
+  .global-nav__list {
+    display: flex;
+  }
+  .global-nav__item {
+    margin-left: 1em;
+  }
+  .global-nav__link {
+    color: $font_color_base;
+    text-transform: uppercase;
+  }
+
+  .block {
+    height: 100vh;
+  }
+} //header
+
+@include tablet {
+  /*------------------------------------------------
+    header
+  ------------------------------------------------*/
+  header {
+    position: static;
+    // padding: 0;
+    // background: #f6f6f6;
+    // box-shadow: 0px 0px 2px #ddd;
+    mix-blend-mode: normal;
+
+    .header {
+      &__logo {
+        font-size: 2rem;
+      }
+    }
+
+    .global-nav__wrap {
+      position: relative;
+    }
+    .global-nav {
+      position: fixed;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1000;
+      background: #aaa;
+      transition: all 0.5s;
+      transform: translateY(-100%);
+    }
+    .global-nav__list {
+      width: 100%;
+      height: 100%;
+      margin-left: 10vw;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .global-nav__item {
+      opacity: 0;
+      margin-bottom: 1em;
+    }
+    .global-nav__link {
+      display: inline-block;
+      color: #fff;
+      transition: all 0.5s;
+    }
+    .global-nav__link:hover {
+      color: #ccc;
+    }
+
+    .hamburger {
+      display: block;
+      position: fixed;
+      right: 1.2rem;
+      top: 1.2rem;
+      width: 2rem;
+      height: 1.5rem;
+      z-index: 1000;
+      transition: all 0.5s;
+      transform: translateY(0%);
+    }
+    .hamburger__line {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      transition: transform 0.5s;
+      background: $font_color_base;
+    }
+    .hamburger__line:nth-child(2) {
+      top: 0.675rem;
+      left: 0;
+      opacity: 1;
+    }
+    .hamburger__line:nth-child(3) {
+      bottom: 0;
+    }
+
+    .is-shown .global-nav {
+      top: 0;
+      transform: translateY(0%);
+    }
+    .is-shown .global-nav__item {
+      animation: global-nav 1.8s cubic-bezier(0.3, 0.45, 0.32, 1.27) -0.5s forwards;
+    }
+
+    @keyframes global-nav {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      40% {
+        transform: translateY(40%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0%);
+        opacity: 1;
+      }
+    }
+
+    .is-shown .global-nav__item:nth-child(2) {
+      animation-delay: -0.4s;
+    }
+    .is-shown .global-nav__item:nth-child(3) {
+      animation-delay: -0.3s;
+    }
+    .is-shown .global-nav__item:nth-child(4) {
+      animation-delay: -0.2s;
+    }
+    .is-shown .global-nav__item:nth-child(5) {
+      animation-delay: -0.1s;
+    }
+
+    .is-shown .hamburger__line {
+      background: #fff;
+    }
+    .is-shown .hamburger__line:nth-of-type(1) {
+      transform: translateY(0.675rem) rotate(-45deg);
+    }
+    .is-shown .hamburger__line:nth-of-type(2) {
+      animation: hamburger__line-nth2 0.5s forwards;
+    }
+    .is-shown .hamburger__line:nth-of-type(3) {
+      transform: translateY(-0.675rem) rotate(45deg);
+    }
+    @keyframes hamburger__line-nth2 {
+      100% {
+        left: 50%;
+        opacity: 0;
+        height: 0;
+      }
+    }
+
+    .global-nav__overlay {
+      opacity: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.8);
+    }
+  } //header
+} //mediaquery

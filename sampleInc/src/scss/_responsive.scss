@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+//PCのみ  (使用頻度あまりないかも)
+@mixin desktop-over {
+  @media screen and (min-width: $desktop ) {
+    @content;
+  }
+}
+
+//tablet分岐
+//breakpointがタブレット幅のとき   tablet以上サイズ用（PC含む）
+@mixin tablet-over {
+  @media screen and (min-width: $tablet + 1 ) and (max-width: $desktop ) {
+    @content;
+  }
+}
+//tablet以下 (mobile含む)  breakpoint タブレット幅のとき
+@mixin tablet {
+  @media screen and (max-width: $tablet ) {
+    @content;
+  }
+}
+
+
+//tabletのみ （mobile以上 PC以下）  breakpointがタブレット幅とモバイル幅のとき
+@mixin tablet-only {
+  @media screen and (min-width: $mobile + 1 ) and (max-width: $tablet ) {
+    @content;
+  }
+}
+
+//mobile以下  breakpoint タブレット幅とモバイル幅のとき
+@mixin mobile {
+  @media screen and (max-width: $mobile ) {
+    @content;
+  }
+}
+
+

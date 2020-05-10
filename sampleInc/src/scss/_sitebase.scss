@@ -1,0 +1,148 @@
+@charset "UTF-8";
+/* ------------------------------------------------
+  sitebase
+------------------------------------------------ */
+//制作するサイトのベースとなるスタイルを記載
+html {
+  @if $fz625 == yes {
+    @include fz625; // 16px x 0.625 = 10px(=1rem) //mixin.scss
+  }
+}
+
+@include tablet {
+  /*------------------------------------------------
+    sitebase
+  ------------------------------------------------*/
+  html {
+    @if $fzvwbase == yes {
+      @include fzvwbase; //レスポンシブ（スマホデザインサイズベース）基準フォントサイズ 10px
+    } @else if $fzvwbreakpoint == yes {
+      @include fzvwbreakpoint; //レスポンシブ（ブレイクポイント1/2幅）基準フォントサイズ 10px
+    }
+  }
+} //mediaquery
+
+body {
+  // min-width: calc(#{$width_outer} + #{$browse_gutter});
+  color: $font_color_base; //variable.scss
+  font-size: $font_size_base; //variable.scss 任意にremサイズ決める時
+  font-family: $font_notosansjp; //font.scss
+  // font-family:$font_notosansjp;     //font.scss
+  line-height: $line-height_base; //variable.scss
+  background: $backgroaund_color_base; //variable.scss
+
+  text-align: justify; // 両端揃え
+  text-justify: inter-ideograph; // 両端揃えの種類(IE用)
+  // -webkit-font-feature-settings: "palt" 1; //文字詰め
+  font-feature-settings: "palt" 1;
+  // -webkit-text-size-adjust: 100%; //スマホでPC表示した際に勝手に文字が大きくなるのを防ぐ
+  box-sizing: border-box;
+}
+
+//@include notosans_jp;     //Webfont 日本語 body{font-family:$font_notosansjp;} と併用する @font-face Noto Sans JP   font.scss
+//@include notosans_sc;     //Webfont 中国語（簡体字） @font-face Noto Sans SC   font.scss
+
+@include tablet {
+  body {
+    font-size: ($font_size_base/1.14285714); //ex PC 1.6rem -> SP 1.4rem
+  }
+} //mediaquery
+
+/* ------------------------------------------------
+  共通レイアウト
+------------------------------------------------ */
+
+a {
+  display: block;
+  color: $anchor_color_base; //variable.scss
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:visited {
+    color: darken($anchor_color_base, 20%); //variable.scss
+  }
+  &:hover,
+  &:visited:hover {
+    color: $anchor_color_accent; //variable.scss
+    text-decoration: none;
+    opacity: 0.8;
+  }
+} //a
+
+//pタグ内のリンクはinline
+p a {
+  display: inline;
+  color: $font_color_base; //variable.scss
+  text-decoration: underline;
+}
+p a:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.block {
+  min-height: 100vh;
+  padding: 7rem 0;
+}
+.block__inner {
+  max-width: $width_inner;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.block__title {
+  margin-bottom: 3.2rem;
+  font-size: 2.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.block__text {
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+}
+
+.page__main {
+  // background: linear-gradient(to top, #f6f6f6, #eee);
+  padding: 12rem 0 8rem;
+  text-align: center;
+  &-title {
+    margin-bottom: 3rem;
+    font-weight: bold;
+    font-size: 3rem;
+  }
+  &-lead {
+    line-height: 2;
+  }
+}
+.page__bottom {
+  width: 100%;
+  height: 30rem;
+  background: url(https://picsum.photos/1000/300?grayscale) no-repeat top left /
+    cover;
+}
+
+@include tablet {
+.block {
+  min-height: auto;
+  padding: 4rem 0;
+  &__title {
+    margin-bottom: 1.8rem;
+  }
+  &__text {
+    text-align: left;
+  }
+}
+
+.page__main {
+  padding: 2rem 2rem 5rem;
+
+}
+.page__bottom {
+  height: 10rem;
+}
+
+
+
+}
