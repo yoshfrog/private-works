@@ -1,10 +1,13 @@
 # Private works
 
-## Sample Company <Javascript, Vanilla JS>
-https://yoshfrog.github.io/private-works/sampleCompany/public/
+## Sample Company
+### 分類： Javascript, Vanilla JS
+https://yoshfrog.github.io/private-works/sample-company/public/
 
-## Sample.Inc <Javascript, Vanilla JS>
-https://yoshfrog.github.io/private-works/sampleInc/public/
+## Sample.Inc
+### 分類： Javascript, Vanilla JS
+https://yoshfrog.github.io/private-works/sample-inc/public/
 
-## 見積もりシュミレーション <jQuery>
+## 見積もりシュミレーション
+### 分類： jQuery
 https://yoshfrog.github.io/private-works/simulator/public/
