@@ -54,11 +54,15 @@ main {
 @include tablet {
   .page {
     &__main {
-      @include mgnvw1(top, 60);
+      @include mgnvw1(top, 120);
       @include pdgvw1(bottom, 60);
+    }
+    &__title {
+      @include mgnvw1(bottom, 30);
     }
     &__text {
       text-align: left;
+      @include mgnvw1(bottom, 80);
     }
   }
 } //tablet
