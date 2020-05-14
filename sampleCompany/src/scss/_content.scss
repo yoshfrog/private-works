@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/*------------------------------------------------
+  content
+------------------------------------------------*/
+.mainvisual {
+  height: calc(100vh - 200px);
+  margin-top: 200px;
+  margin-left: 20%;
+  filter: saturate(70%);
+  background: url(https://picsum.photos/id/534/800/600) no-repeat top right /
+    100% auto;
+  &__wrap {
+    margin-left: -15.5%;
+    padding-top: 15%;
+    padding-top: 40vh;
+  }
+  &__title {
+    display: inline-block;
+    margin-bottom: 0.1rem;
+    color: #2b4068;
+    font-size: 6.4rem;
+    font-weight: bold;
+  }
+  &__lead {
+    font-size: 1.8rem;
+    color: #2b4068;
+  }
+}
+
+@include tablet {
+  /*------------------------------------------------
+    content
+  ------------------------------------------------*/
+  .mainvisual {
+    height: 75vw;
+    background-image: url(https://picsum.photos/id/534/800/1000);
+    @include mgnvw1(top, 100);
+    &__wrap {
+      margin-left: -18%;
+      padding-top: 48vw;
+    }
+    &__title {
+      @include fzvw(28);
+    }
+    &__lead {
+      @include fzvw(14);
+    }
+  }
+} //mediaquery
+
+.section-concept {
+  padding-top: 100px;
+
+  &__inner {
+    width: 70%;
+    padding: 2em 0;
+    margin: auto;
+    background: #f3e6e6;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 1.8rem;
+    line-height: 2;
+  }
+}
+.section-product {
+  overflow: hidden;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+@include tablet {
+  .section-concept {
+    padding-top: 5vw;
+    &__inner {
+      width: 88vw;
+      @include pdgvw3(20, 20, 20);
+    }
+    &__text {
+      @include mgnvw3(20, auto, 20);
+      @include fzvw(16);
+      text-align: left;
+    }
+  }
+  .section-product {
+    padding-top: 5vw;
+    background: #ede3d8;
+  }
+}

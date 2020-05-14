@@ -1,0 +1,235 @@
+@charset "UTF-8";
+/*------------------------------------------------
+ Component
+------------------------------------------------*/
+main {
+  position: relative;
+}
+.block {
+  margin: 6rem auto 12rem;
+}
+.block__inner {
+  margin: auto 5%;
+}
+
+.block__title {
+  margin-bottom: 3.2rem;
+  font-size: 3.6rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+.block__text {
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+}
+@include tablet {
+  /*------------------------------------------------
+ Component
+------------------------------------------------*/
+
+  .block {
+    @include mgnvw3(30, auto, 40);
+    &__title {
+      @include fzvw(22);
+      @include mgnvw1(bottom, 20);
+    }
+    &__text {
+      @include fzvw(16);
+    }
+  }
+} //tablet
+
+.page {
+  &__main {
+    margin-top: 16rem;
+    margin-bottom: 0;
+    padding-bottom: 100px;
+  }
+  &__text {
+    text-align: center;
+  }
+}
+
+@include tablet {
+  .page {
+    &__main {
+      @include mgnvw1(top, 60);
+      @include pdgvw1(bottom, 60);
+    }
+    &__text {
+      text-align: left;
+    }
+  }
+} //tablet
+
+// card -------------------------------------------------------------
+.card {
+  &__output {
+    position: relative;
+    margin-top: 80px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 15rem;
+      left: -6%;
+      width: 112%;
+      height: calc(100% + 100px);
+      background: #ede3d8;
+      z-index: -1;
+    }
+  }
+  &__wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    margin-left: calc(-10% / 3);
+  }
+  &__title {
+    margin: 1.8rem auto;
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: calc(10% / 3);
+
+    &:nth-child(3n-1) {
+      margin-top: 50px;
+    }
+    &:nth-child(3n) {
+      margin-top: 100px;
+    }
+  }
+  &__image {
+    order: -1;
+    width: 100%;
+  }
+} //card
+
+@include tablet {
+  .card {
+    &__output {
+      @include mgnvw1(top, 30);
+      &::before {
+        top: -5vw;
+      }
+    }
+
+    &__wrap {
+      margin-left: calc(-10% / 2);
+    }
+    &__item {
+      width: 45%;
+      margin-left: calc(10% / 2);
+      &:nth-child(3n),
+      &:nth-child(3n-1) {
+        margin-top: 0;
+      }
+      &:nth-child(2n) {
+        @include mgnvw1(top, 40);
+      }
+    }
+    &__title {
+      margin: 2vw auto;
+      @include fzvw(16);
+    }
+    &__text {
+      @include fzvw(14);
+    }
+  } //card
+} //tablet
+
+// button ---------------------------------------------------
+.button {
+  display: block;
+  width: 12em;
+  margin: 5rem auto;
+  padding: 0.8em 0;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.1em;
+  font-size: 2rem;
+  border-radius: 10px;
+  background: #1c293f;
+  &__top {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 2em 0 1em;
+    color: #e4e3e7;
+    background: #5e463d;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 50%;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform: translateX(-50%);
+      border: 1.4rem solid transparent;
+      border-bottom: 1.8rem solid #dcdcdc;
+    }
+  }
+} //button
+
+.is-bottom {
+  position: absolute;
+  bottom: -35px;
+}
+
+@include tablet {
+  .button {
+    @include wvw(180);
+    @include mgnvw3(50, auto, 50);
+    @include fzvw(14);
+    border-radius: 2.6666666667vw;
+    &__top {
+      @include wvw(45);
+      @include hvw(45);
+      @include pdgvw3(24, 0, 10);
+      @include fzvw(10);
+      &::after {
+        top: 0;
+        border-width: 2.4vw;
+        border-bottom-width: 2.8vw;
+      }
+    }
+  }
+  .is-bottom {
+    bottom: -6.5vw;
+    // bottom: -.5vw;
+  }
+} //button
+
+/*------------------------------------------------
+  scroll animation
+------------------------------------------------*/
+.slide__item {
+  opacity: 0;
+  transition: all 1s;
+  transform: translateY(200px);
+}
+.is-slideUp {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@include tablet {
+  .slide__item {
+    transform: translateY(10vw);
+  }
+  .is-slideUp {
+    transform: translateY(0);
+  }
+}

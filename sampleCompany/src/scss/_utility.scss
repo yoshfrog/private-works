@@ -1,0 +1,233 @@
+@charset "UTF-8";
+/* ------------------------------------------------
+  display_switch
+------------------------------------------------ */
+@mixin display_switch {
+  //breakpoint タブレット幅のみのとき
+  @if $break_tablet == yes {
+    .sp { display: none !important; }
+    //タブレット幅以下のとき
+    @include tablet {
+  /* ------------------------------------------------
+    display_switch
+  ------------------------------------------------ */
+      .pc { display: none !important; }
+      .sp { display: block !important; }
+    }//tablet
+  }//if
+
+  //breakpoint タブレット幅 および モバイル幅のとき
+  @if $break_tablet_mobile == yes {
+    .tablet, .sp { display: none !important; }
+    //タブレット幅のみのとき
+    @include tablet-only {
+  /* ------------------------------------------------
+    display_switch
+  ------------------------------------------------ */
+      .pc, .sp { display: none !important; }
+      .tablet { display: block !important; }
+    }//tablet-only
+    //モバイル幅のみのとき
+    @include mobile {
+  /* ------------------------------------------------
+    display_switch
+  ------------------------------------------------ */
+      .pc, .tablet { display: none !important; }
+      .sp { display: block !important; }
+
+    }//mobile
+  }//if
+
+}//display_switch
+
+@if $display_switch == yes {
+    @include display_switch;
+}
+/* ------------------------------------------
+ Utility
+------------------------------------------ */
+// .disp_none { display: none !important; }
+// .disp_block { display: block !important; }
+// .disp_inline { display: inline !important; }
+// .disp_inlblock { display: inline-block !important; }
+
+// .ovf_hidden { overflow: hidden !important; }
+// .pos_r { position: relative; }
+// .pos_a { position: absolute; }
+
+.align_l { text-align: left;}
+.align_r { text-align: right;}
+.align_c { text-align: center;}
+
+.font_normal { font-weight: normal; }
+.font_bold { font-weight: bold; }
+
+.font_small  { font-size: 80%; }
+.font_medium { font-size: 90%; }
+.font_large  { font-size: 120%; }
+.font_xlarge { font-size: 150%; }
+
+
+// @include tablet {
+// 	/* ------------------------------------------
+// 	  Utility
+// 	------------------------------------------ */
+// }//tablet
+
+
+
+
+// /* ------------------------------------------
+//   Width 10-100%
+// ------------------------------------------ */
+// // Width 10-100%
+// @for $i from 1 to 11 {
+//   .wid#{$i * 10} {
+//     width: 10% * $i !important;
+//   }
+// }
+
+// //レスポンシブはPCの80%幅
+// @include tablet {
+// 	/* ------------------------------------------
+// 	  Width 10-100%
+// 	------------------------------------------ */
+// 	@for $i from 1 to 11 {
+// 	  .wid#{$i * 10} {
+// 	    width: 10% * $i/1.325 !important;
+// 	  }
+// 	}
+// }//mediaquery
+
+
+// /* ------------------------------------------
+//   Margin 0-60/Padding 0-60
+// ------------------------------------------ */
+// // margin 0-60
+// @for $i from 0 to 13 {
+//   .mrg#{$i * 5} {
+//     margin: 5px * $i !important;
+//   }
+// }
+// // margin-top 0-60
+// @for $i from 0 to 13 {
+//   .mrgT#{$i * 5} {
+//     margin-top: 5px * $i !important;
+//   }
+// }
+// // margin-bottom 0-60
+// @for $i from 0 to 13 {
+//   .mrgB#{$i * 5} {
+//     margin-bottom: 5px * $i !important;
+//   }
+// }
+// // margin-left 0-60
+// @for $i from 0 to 13 {
+//   .mrgL#{$i * 5} {
+//     margin-left: 5px * $i !important;
+//   }
+// }
+// // margin-right 0-60
+// @for $i from 0 to 13 {
+//   .mrgR#{$i * 5} {
+//     margin-right: 5px * $i !important;
+//   }
+// }
+
+// // padding 0-60
+// @for $i from 0 to 13 {
+//   .pdg#{$i * 5} {
+//     padding: 5px * $i !important;
+//   }
+// }
+// // padding-top 0-60
+// @for $i from 0 to 13 {
+//   .pdgT#{$i * 5} {
+//     padding-top: 5px * $i !important;
+//   }
+// }
+// // padding-bottom 0-60
+// @for $i from 0 to 13 {
+//   .pdgB#{$i * 5} {
+//     padding-bottom: 5px * $i !important;
+//   }
+// }
+// // padding-left 0-60
+// @for $i from 0 to 13 {
+//   .pdgL#{$i * 5} {
+//     padding-left: 5px * $i !important;
+//   }
+// }
+// // padding-right 0-60
+// @for $i from 0 to 13 {
+//   .pdgR#{$i * 5} {
+//     padding-right: 5px * $i !important;
+//   }
+// }
+
+// @include tablet {
+// 	/* ------------------------------------------
+// 	  Margin 0-60/Padding 0-60
+// 	------------------------------------------ */
+// 	// margin 0-60
+// 	@for $i from 0 to 13 {
+// 	  .mrg#{$i * 5} {
+// 	    margin: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// margin-top 0-60
+// 	@for $i from 0 to 13 {
+// 	  .mrgT#{$i * 5} {
+// 		margin-top: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// margin-bottom 0-60
+// 	@for $i from 0 to 13 {
+// 	  .mrgB#{$i * 5} {
+// 		margin-bottom: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// margin-left 0-60
+// 	@for $i from 0 to 13 {
+// 	  .mrgL#{$i * 5} {
+// 		margin-left: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// margin-right 0-60
+// 	@for $i from 0 to 13 {
+// 	  .mrgR#{$i * 5} {
+// 		margin-right: 5px * $i/2 !important;
+// 	  }
+// 	}
+
+// 	// padding 0-60
+// 	@for $i from 0 to 13 {
+// 	  .pdg#{$i * 5} {
+// 	    padding: 5px * $i !important;
+// 	  }
+// 	}
+// 	// padding-top 0-60
+// 	@for $i from 0 to 13 {
+// 	  .pdgT#{$i * 5} {
+// 		padding-top: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// padding-bottom 0-60
+// 	@for $i from 0 to 13 {
+// 	  .pdgB#{$i * 5} {
+// 		padding-bottom: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// padding-left 0-60
+// 	@for $i from 0 to 13 {
+// 	  .pdgL#{$i * 5} {
+// 		padding-left: 5px * $i/2 !important;
+// 	  }
+// 	}
+// 	// padding-right 0-60
+// 	@for $i from 0 to 13 {
+// 	  .pdgR#{$i * 5} {
+// 		padding-right: 5px * $i/2 !important;
+// 	  }
+// 	}
+// }//mediaquery
