@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=, initial-scale=1.0">
+<title>Document</title>
+</head>
+<style>
+.active {background: turquoise;}
+</style>
+<body>
+
+<div id="app">
+  <h1>TODO</h1>
+  <input type="text" v-model="inputTask" placeholder="Enter your task">
+  <button @click="addTask">Add task</button>
+  <div>
+    <button :class="{active: filtered ==='all'}" @click="filtering('all')">All</button>
+    <button :class="{active: filtered ==='ongoing'}" @click="filtering('ongoing')">Ongoing</button>
+    <button :class="{active: filtered ==='done'}" @click="filtering('done')">Done</button>
+    <button @click="removeAll">Remove all</button>
+  </div>
+  <p>{{filteredTodos.length}} tasks left /  {{todos.length}} tasks of all</p>
+  <ul>
+    <li v-for="(todo) in filteredTodos" :class="{done:todo.done}" :key="todo.id"><!--todo.doneがtrueだったらclass付与-->
+      <input type="checkbox" v-model="todo.done" @click="status(todo)">
+      {{ todo.task }}  <!--doneのチェックを算出-->
+      <button @click="removeTask(todo)">Remove task</button>
+    </li>
+  </ul>
+  <p v-show="filteredTodos.length===0">{{noTask}}</p> <!--タスクが無い状態-->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    inputTask: '',
+    filtered:'',
+    id: 1,
+    done:false,
+    noTask:'No tasks',
+    keyName:'myTodoList',
+    todos: [],
+  },
+
+  created() {
+    let keyObject =JSON.parse(localStorage.getItem(this.keyName))  //ローカルストレージオブジェクトの保持
+    if (keyObject) {
+      this.todos = keyObject;
+    } else {
+      return
+    }
+
+    //リロード時のid最終番号取得 + 代入
+    if (this.todos.length > 0) {
+      const setId = this.todos.reduce(function(a,b){ return a > b.id ? a : b.id} ,0) //既存オブジェクトのIDの最大値取得
+      this.id = setId + 1
+      this.filtered = 'all'
+    }
+
+  },
+
+  methods: {
+    filtering(filtered) {
+      this.filtered = filtered
+      if (this.todos.length === 0) {    //項目がないときはfileteringしない
+        this.filtered = ''
+      }
+    },
+
+    addTask() {
+      if (this.inputTask==='') {        //未入力の場合 処理しない
+        return
+      }
+
+      const todo = {id: this.id, task:this.inputTask, done:false}
+      this.todos.push(todo)                         //リストに追加
+      localStorage.setItem(this.keyName, JSON.stringify(this.todos));  //ローカルストレージにオブジェクト追加
+      this.inputTask=''
+      this.filtered = 'all'
+      this.id++
+
+    },
+
+    removeAll() {
+      this.todos = [];
+      localStorage.clear();
+      this.filtered = ''
+    },
+
+    removeTask(todo) {
+      let keyObject =JSON.parse(localStorage.getItem(this.keyName))  //ローカルストレージのオブジェクト取得
+      const index =  this.todos.indexOf(todo)  //項目取得
+      this.todos.splice(index,1);              //項目削除
+      if (keyObject) {
+        localStorage.setItem(this.keyName, JSON.stringify(this.todos));  //ローカルストレージ再設定
+      }
+
+      if (this.todos.length === 0) {  //項目がなくなった時
+        this.filtered = ''
+        this.noTask = 'No tasks'
+      }
+
+    },
+
+    status(todo) {
+      todo.done =  !todo.done     //ローカルストレージのdone status切り替え
+      localStorage.setItem(this.keyName, JSON.stringify(this.todos));  //ローカルストレージ再設定
+    }
+
+  },
+
+  computed: {
+
+    filteredTodos() {
+      return this.todos.filter(todo => {
+        if (this.filtered === 'ongoing') {      //進行中
+          this.noTask = 'No ongoing tasks'
+          return !todo.done;
+        } else if (this.filtered === 'done') {  //完了
+          this.noTask = 'No done tasks'
+          return todo.done;
+        } else {                                //すべて
+          this.noTask = 'No tasks'
+          return true;
+        }
+
+      });
+    },
+
+  },
+
+})
+
+
+</script>
+</body>
+</html>
+
