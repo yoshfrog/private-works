@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <input :type="type" v-model="inputTask" :placeholder="placeholder">
-    <button @click="callAddBtn">Add</button>
+  <div class="task">
+    <input class="task__input" :type="type" v-model="inputTask" :placeholder="placeholder">
+    <button class="task__add" @click="callAddBtn">追加</button>
   </div>
 </template>
 
@@ -25,9 +25,6 @@ export default {
       required: true
     }
   },
-  methods: {
-
-  },
   computed: {
     inputTask: {
       get() {
@@ -41,8 +38,25 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss">
+.task {
+  display: grid;
+  grid-template-columns: 3.3fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+  &__input {
+    padding: 0.4em;
+    background: #f8f8f8;
+  }
+  &__add {
+    background: #80BBBA;
+  }
+}
+@media screen and (max-width: 768px){
+  .task {
+    margin-bottom: 10px;
+  }
+}
 </style>
 
 
