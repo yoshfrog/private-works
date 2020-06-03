@@ -1,26 +1,29 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1 class="main__title">TODO</h1>
-      <p class="main__lead">TODO管理アプリ</p>
-      <InputTask
-        @input="onInputTask"
-        v-model="target.task"
-        placeholder="タスクを入力"
-        :callAddBtn="addBtn"
-      />
-      <Switcher
-        @callSwitcher="switcherBtn"
-        :callRemoveAll="removeAll"
-        :filterState="filterState"
-      />
-      <ListTodo
-        :filteredTodos="filteredTodos"
-        :todos.sync="todos"
-        :keyName="keyName"
-        @callRemoveBtn="removeBtn"
-      />
-      <p class="list__none" v-show="filteredTodos.length === 0">{{ noTask }}</p>
+      <div class="box">
+        <h1 class="main__title">TODO</h1>
+        <p class="main__lead">TODO管理アプリ</p>
+        <InputTask
+          @input="onInputTask"
+          v-model="target.task"
+          placeholder="タスクを入力"
+          :callAddBtn="addBtn"
+        />
+        <Switcher
+          @callSwitcher="switcherBtn"
+          :callRemoveAll="removeAll"
+          :filterState="filterState"
+        />
+        <ListTodo
+          :filteredTodos="filteredTodos"
+          :todos.sync="todos"
+          :keyName="keyName"
+          @callRemoveBtn="removeBtn"
+        />
+        <p class="list__none" v-show="filteredTodos.length === 0">{{ noTask }}</p>
+      </div>
+      <p class="note">保存したタスクはローカルストレージへ保存されます。</p>
     </div>
   </div>
 </template>
@@ -167,9 +170,11 @@ body {
 }
 .container {
   max-width: 520px;
+  margin:60px auto;
+}
+.box {
   min-height:  450px;
-  margin: 60px auto;
-
+  margin: 0 auto 10px;
   padding: 30px 50px;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -178,7 +183,10 @@ body {
     width: 100%;
   }
 }
-
+.note {
+  font-size: 12px;
+  text-align: center;
+}
 .main__title {
   margin-bottom: 10px;
   font-size: 40px;
@@ -201,6 +209,8 @@ body {
 @media screen and (max-width: 768px){
   .container {
     width: 90vw;
+  }
+  .box {
     margin-top: 7.5vw;
     padding: 5vw 7vw 7vw;
   }

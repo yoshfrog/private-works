@@ -104,7 +104,7 @@ export default {
   content: '\2713\0020';
   position: absolute;
   top: .15em;
-  top: 29%;
+  top: 27%;
   left: .22em;
   font-size: 1.3em;
   line-height: 0.8;
