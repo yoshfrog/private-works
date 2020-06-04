@@ -166,7 +166,7 @@ body {
   line-height: 1.6;
   font-size: 14px;
   letter-spacing: 0.01em;
-  background: #f8f8f8;
+  background: #f4f4f4;
 }
 .container {
   max-width: 520px;
@@ -178,7 +178,7 @@ body {
   padding: 30px 50px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  background: #D7ECE6;
+  background: #D6E8E4;
   > div {
     width: 100%;
   }
