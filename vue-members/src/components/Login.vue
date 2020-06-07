@@ -19,6 +19,10 @@
 
       <button class="login__btn" @click="login">ログイン</button>
     </form>
+    <p class="login__text">
+      このページはログイン画面のモックとなり、サーバーとの接続は行なっておりません<br>
+      ユーザ名、パスワード(半角英数)は任意の文字列でログインが可能です
+    </p>
   </div>
 </template>
 
@@ -116,5 +120,24 @@ export default {
     border-radius: 6px;
     background: #1867c0;
   }
+  &__text {
+    margin-top: 50px;
+    font-size: 11px;
+  }
+}
+@media screen and (max-width: 568px) {
+.login {
+  padding: 10vw 8vw;
+  &__title {
+    margin-bottom: 3vw;
+  }
+  &__text {
+    margin-top: 10vw;
+    text-align: left;
+  }
+
+}
+
+
 }
 </style>

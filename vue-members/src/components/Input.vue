@@ -55,7 +55,7 @@ export default {
 .login {
   max-width: 500px;
   margin: 30px auto;
-  padding: 50px;
+  padding: 50px 30px 30px;
   box-shadow: 1px 1px 5px #ccc;
   border-radius: 10px;
   background: #fff;
@@ -81,6 +81,23 @@ export default {
     width: 200px;
     text-align: left;
   }
+}
+@media screen and (max-width: 568px) {
+.login {
+  &__form {
+    display: block;
+    text-align: left;;
+  }
+  &__right {
+    width: 100%;
+  }
+  &__input {
+    width: 100%;
+    margin-top:.3em;
+  }
+
+}
+
 }
 </style>
 
