@@ -8,6 +8,10 @@
     <div class="container">
       <h1 class="main__title">会員リスト</h1>
       <router-view />
+      <p class="main__text">
+        このページはログイン画面のモックとなり、サーバーとの接続は行なっておりません<br>
+        ユーザ名、パスワード(半角英数)は任意の文字列でログインが可能です
+      </p>
     </div>
   </div>
 </template>
@@ -45,6 +49,11 @@ img {
   margin: 40px auto 20px;
   font-size: 36px;
   text-align: center;
+}
+.main__text {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
 }
 .nav__link {
   font-weight: bold;

@@ -97,9 +97,5 @@ export default {
 .main__user {
   text-align: right;
 }
-.main__text {
-  margin-top: 20px;
-  text-align: center;
-  font-size: 14px;
-}
+
 </style>
