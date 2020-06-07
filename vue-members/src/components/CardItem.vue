@@ -1,17 +1,17 @@
 <template>
   <div :class="$style.card__wrap">
-    <div :class="$style.card__body" v-for="(list, index) in lists" :key="index">
+    <div :class="$style.card__body" v-for="(list, index) in sorted" :key="index">
       <p :class="$style.card__image">
         <img src="../assets/img/user.png" alt="アバター" />
       </p>
       <div :class="$style.card__content">
         <dl>
-          <dt>名前</dt>
-          <dd>{{ list.name }}</dd>
+          <dt>ID</dt>
+          <dd>{{ list.id }}</dd>
         </dl>
         <dl>
-          <dt>ユーザ名</dt>
-          <dd>{{ list.username }}</dd>
+          <dt>名前</dt>
+          <dd>{{ list.name }}</dd>
         </dl>
         <dl>
           <dt>Eメール</dt>
@@ -37,13 +37,17 @@
 </template>
 
 <script>
+
 export default {
   props: {
-    lists: {
+    sorted: {
       type: Array,
       required: true,
     },
   },
+
+
+
 };
 </script>
 
